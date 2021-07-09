@@ -8,7 +8,8 @@
     "server": "nodemon sever",
     "client": "npm run dev --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "lint": "eslint **/*.js"
+    "lint": "eslint **/*.js",
+    "heroku": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "CLA",
   "license": "ISC",
