@@ -19,7 +19,7 @@ app.use("/api/profile", require("./routes/api/profile"));
 // Server Static assets in production
 if (process.env.NODE_ENV === "production") {
   // Set static folder
-  app.use(express.static("client/.next"));
+  app.use(express.static("client/.next/server/pages"));
 
   app.get("*", (req, res) => {
     res.sendFile(
