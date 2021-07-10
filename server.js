@@ -1,5 +1,6 @@
 const express = require("express");
 const connectDB = require("./config");
+require("newrelic");
 
 const app = express();
 
