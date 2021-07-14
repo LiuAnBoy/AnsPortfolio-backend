@@ -1,7 +1,9 @@
 import axios from "axios";
 import { LOAD_PROFILE_SUCCESS, LOAD_PROFILE_FAILURE } from "../types";
 
-export const loadProfile = async(dispatch) => {
+const url = process.env.NEXT_PUBLIC_API_URL;
+
+export const loadProfile = async (dispatch) => {
   try {
     const res = await axios.get("/api/profile");
     dispatch({

@@ -1,7 +1,9 @@
 import axios from "axios";
 import { LOAD_TAGS_SUCCESS, LOAD_TAGS_FAILURE } from "../types";
 
-export const loadTags = async(dispatch) => {
+const url = process.env.NEXT_PUBLIC_API_URL;
+
+export const loadTags = async (dispatch) => {
   try {
     const res = await axios.get("/api/tag");
     dispatch({

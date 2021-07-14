@@ -1,6 +1,8 @@
 import axios from "axios";
 import { LOAD_PROJECTS_SUCCESS, LOAD_PROJECTS_FAILURE } from "../types";
 
+const url = process.env.NEXT_PUBLIC_API_URL;
+
 export const loadProjects = async(dispatch) => {
   try {
     const res = await axios.get("/api/project");

@@ -26,11 +26,6 @@ const useStyles = makeStyles({
       margin: "45px auto 30px",
     },
   },
-  outlinedInput: {
-    "&$focused $notchedOutline": {
-      border: "1px solid #4A90E2",
-    },
-  },
   textField: {
     width: "100%",
     margin: "12px 0",
@@ -175,6 +170,7 @@ const ContactForm = () => {
             onClick={onSubmit}
             disabled={email.btnDisabled}
             className={email.btnDisabled ? classes.button_disabled : classes.button}
+            style={{ backgroundColor: email.btnColor }}
           >
             {email.btnText}
           </Button>

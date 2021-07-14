@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 25.3.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 253.2 253.21" style="enable-background:new 0 0 253.2 253.21;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#FFFFFF;}
+	.st1{fill:none;stroke:#30A5B0;stroke-width:16;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+</style>
+<circle class="st0" cx="126.33" cy="126.47" r="121.63"/>
+<g>
+	
+		<ellipse transform="matrix(0.1891 -0.982 0.982 0.1891 -21.5058 226.897)" class="st1" cx="126.63" cy="126.47" rx="114.1" ry="114.1"/>
+	<line class="st1" x1="54.09" y1="38.4" x2="54.09" y2="214.54"/>
+	<line class="st1" x1="199.46" y1="38.4" x2="199.46" y2="214.54"/>
+	<line class="st1" x1="126.92" y1="12.37" x2="199.46" y2="214.54"/>
+	<line class="st1" x1="126.63" y1="12.37" x2="54.09" y2="214.54"/>
+	<line class="st1" x1="54.09" y1="38.4" x2="199.46" y2="214.54"/>
+</g>
+</svg>

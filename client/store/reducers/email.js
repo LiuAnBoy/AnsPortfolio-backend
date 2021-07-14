@@ -11,6 +11,7 @@ const initialState = {
   data: null,
   formDisabled: false,
   btnDisabled: true,
+  btnColor: "red",
   btnText: "送出",
 };
 
@@ -25,6 +26,7 @@ const email = (state = initialState, action) => {
         data: payload,
         formDisabled: false,
         btnDisabled: false,
+        btnColor: "#2caeba",
         btnText: "送出",
       };
     case EMAIL_SEND_SUCCESS:
@@ -34,6 +36,7 @@ const email = (state = initialState, action) => {
         data: payload,
         formDisabled: true,
         btnDisabled: true,
+        btnColor: "#88ebf2",
         btnText: "送出成功",
       };
     case EMAIL_SEND_FAILURE:
@@ -43,6 +46,7 @@ const email = (state = initialState, action) => {
         data: null,
         formDisabled: true,
         btnDisabled: true,
+        btnColor: "#f288ad",
         btnText: "送出失敗",
       };
     case EMAIL_LOADING:
@@ -52,6 +56,7 @@ const email = (state = initialState, action) => {
         data: payload,
         formDisabled: true,
         btnDisabled: true,
+        btnColor: "#e6e6e6",
         btnText: "送出中...",
       };
     case EMAIL_INITIAL:
@@ -61,6 +66,7 @@ const email = (state = initialState, action) => {
         data: null,
         formDisabled: false,
         btnDisabled: true,
+        btnColor: "#e6e6e6",
         btnText: "送出",
       };
     default:
