@@ -1,7 +1,6 @@
 const express = require("express");
 const connectDB = require("./config");
-const keepServerAlive = require("./functions/keepServerAlive");
-require("newrelic");
+const wakeUpDyno = require("./functions/wakeUpDyno");
 
 const app = express();
 
@@ -20,6 +19,7 @@ app.use("/api/tag", require("./routes/api/tag"));
 app.use("/api/profile", require("./routes/api/profile"));
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
-
-// Ping server keep server alive
-keepServerAlive();
+app.listen(PORT, () => {
+  wakeUpDyno("https://portfolio-backend-server.herokuapp.com/");
+  wakeUpDyno("https://www.luansportfolio.com/");
+});
