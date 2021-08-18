@@ -20,6 +20,6 @@ app.use("/api/profile", require("./routes/api/profile"));
 
 // app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
 app.listen(PORT, () => {
-  wakeUpDyno("https://portfolio-backend-server.herokuapp.com/");
+  wakeUpDyno("https://api.luansportfolio.com/");
   wakeUpDyno("https://www.luansportfolio.com/");
 });
