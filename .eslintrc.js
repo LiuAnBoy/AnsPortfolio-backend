@@ -38,5 +38,6 @@ module.exports = {
     ],
     quotes: ["error", "double"],
     "quote-props": ["error", "as-needed"],
+    endOfLine: "lf",
   },
 };
