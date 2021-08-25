@@ -14,12 +14,12 @@ const wakeUpDyno = (url, interval = 25, callback) => {
     } finally {
       try {
         callback(); // execute callback, if passed
-      } catch (e) {
+      } catch (error) {
         // catch callback error
-        callback ? console.log("Callback failed: ", e.message) : null;
+        console.log("Callback failed: ", error.message);
       } finally {
         // do it all again
-        return wakeUpDyno(url, interval, callback);
+        wakeUpDyno(url, interval, callback);
       }
     }
   }, milliseconds);

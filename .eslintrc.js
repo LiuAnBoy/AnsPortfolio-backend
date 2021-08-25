@@ -24,9 +24,9 @@ module.exports = {
     "space-before-function-paren": [
       "error",
       {
-        anonymous: "never",
-        named: "never",
-        asyncArrow: "never",
+        anonymous: "always",
+        named: "always",
+        asyncArrow: "always",
       },
     ],
     "prefer-const": [
@@ -38,6 +38,5 @@ module.exports = {
     ],
     quotes: ["error", "double"],
     "quote-props": ["error", "as-needed"],
-    endOfLine: "lf",
   },
 };

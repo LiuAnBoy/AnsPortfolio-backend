@@ -1,0 +1,2 @@
+mongoURI=mongodb+srv://CLA:eric2242@portfolio.woear.mongodb.net/Portfolio?retryWrites=true&w=majority
+API_URI=https://portfolio-backend-server.herokuapp.com/
