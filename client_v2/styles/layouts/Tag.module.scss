@@ -1,0 +1,13 @@
+@import '../library';
+
+.tag {
+  background-color: #dae2ec;
+  color: $text_main_color;
+  border-radius: 2px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.tag > span {
+  line-height: initial;
+}

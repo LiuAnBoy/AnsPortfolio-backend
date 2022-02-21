@@ -1,11 +1,11 @@
-import axios from "axios";
-import { LOAD_PROFILE_SUCCESS, LOAD_PROFILE_FAILURE } from "../types";
+import axios from 'axios';
+import { LOAD_PROFILE_SUCCESS, LOAD_PROFILE_FAILURE } from '../types';
 
-const url = process.env.NEXT_PUBLIC_API_URL;
+// const url = process.env.NEXT_PUBLIC_API_URL;
 
 export const loadProfile = async (dispatch) => {
   try {
-    const res = await axios.get("/api/profile");
+    const res = await axios.get('/api/profile');
     dispatch({
       type: LOAD_PROFILE_SUCCESS,
       payload: res.data,
@@ -20,3 +20,5 @@ export const loadProfile = async (dispatch) => {
     });
   }
 };
+
+export default loadProfile;

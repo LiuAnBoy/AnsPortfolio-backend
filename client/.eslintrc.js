@@ -2,54 +2,53 @@ module.exports = {
   root: true,
   env: {
     browser: true,
-    node: true,
+    es2021: true,
   },
-  parser: "babel-eslint",
+  parser: 'babel-eslint',
   parserOptions: {
-    parser: "babel-eslint",
+    parser: 'babel-eslint',
     ecmaFeatures: {
       jsx: true,
     },
   },
-  extends: [
-    "airbnb-base",
-    "eslint:recommended",
-    "plugin:react/recommended", // React rules
-    "plugin:react-hooks/recommended", // React hooks rules
-  ],
-  plugins: ["prettier", "react-hooks", "react"],
+  extends: ['airbnb', 'prettier', 'eslint:recommended'],
+  plugins: ['react', 'react-hooks', 'prettier'],
   // add your custom rules here
   rules: {
-    "no-unused-vars": "warn",
-    "no-console": "off",
-    "func-names": "off",
-    "no-process-exit": "off",
-    "object-shorthand": "off",
-    "class-methods-use-this": "off",
-    semi: ["error", "always"],
-    "space-before-function-paren": [
-      "error",
+    'prettier/prettier': 'error',
+    'arrow-body-style': 'off',
+    'prefer-arrow-callback': 'off',
+    semi: ['error', 'always'],
+    'space-before-function-paren': [
+      'error',
       {
-        anonymous: "never",
-        named: "never",
-        asyncArrow: "never",
+        anonymous: 'never',
+        named: 'never',
+        asyncArrow: 'always',
       },
     ],
-    "template-curly-spacing": ["error", "always"],
-    yoda: ["error", "never"],
-    "no-unneeded-ternary": "off",
-    "react/prop-types": 0,
-    "prefer-const": [
-      "error",
+    yoda: ['error', 'never'],
+    'no-unneeded-ternary': 'off',
+    'prefer-const': [
+      'error',
       {
-        destructuring: "any",
+        destructuring: 'any',
         ignoreReadBeforeAssign: false,
       },
     ],
-    quotes: ["error", "double"],
-    "quote-props": ["error", "as-needed"],
-    "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
-    "react-hooks/exhaustive-deps": "warn", // Checks effect dependencies
-    "no-underscore-dangle": ["error", { allow: ["_id", "_store"] }],
+    quotes: ['error', 'single', { avoidEscape: true }],
+    'quote-props': ['error', 'as-needed'],
+    'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
+    'no-underscore-dangle': ['error', { allow: ['_id', '_store'] }],
+    'no-unused-vars': 'warn',
+    'react/jsx-uses-react': 'error',
+    'react/jsx-uses-vars': 'error',
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
+    'react/jsx-props-no-spreading': 'off',
+    'jsx-a11y/no-static-element-interactions': 'off',
+    'jsx-a11y/label-has-associated-control': 'off',
+    'jsx-a11y/anchor-is-valid': 'off',
+    'react/forbid-prop-types': 'off',
   },
 };

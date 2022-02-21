@@ -1,0 +1,21 @@
+// MAIN COLOR
+$default: #fff;
+
+$primary: #2caeba;
+$secondary: #dffcfe;
+
+$background_light: #dffcfe;
+$background_dark: #c6faff;
+$background_nav: #f8f9f9;
+$background_footer: #222;
+
+$text_main_color: #102a42;
+
+// Section Style
+
+@mixin section($background_color) {
+  width: 100vw;
+  width: 100%;
+  background-color: $background_color;
+  padding: 40px 0;
+}

@@ -1,0 +1,17 @@
+@import '../library';
+
+.footer {
+  padding: 8px 0;
+  text-align: center;
+  background-color: $background_footer;
+}
+
+.typo {
+  margin: 0;
+  color: $default;
+  letter-spacing: 1.5px;
+}
+
+.typo > span {
+  color: $primary;
+}

@@ -1,7 +1,4 @@
-import {
-  LOAD_PROJECTS_SUCCESS,
-  LOAD_PROJECTS_FAILURE,
-} from "../types";
+import { LOAD_PROJECTS_SUCCESS, LOAD_PROJECTS_FAILURE } from '../types';
 
 const initialState = {
   loading: true,
@@ -17,13 +14,13 @@ const loadProjects = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        payload: payload,
+        payload,
       };
     case LOAD_PROJECTS_FAILURE:
       return {
         ...state,
         loading: false,
-        payload: payload,
+        payload,
       };
     default:
       return state;

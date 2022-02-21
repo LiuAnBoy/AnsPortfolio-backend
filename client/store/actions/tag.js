@@ -1,11 +1,11 @@
-import axios from "axios";
-import { LOAD_TAGS_SUCCESS, LOAD_TAGS_FAILURE } from "../types";
+import axios from 'axios';
+import { LOAD_TAGS_SUCCESS, LOAD_TAGS_FAILURE } from '../types';
 
-const url = process.env.NEXT_PUBLIC_API_URL;
+// const url = process.env.NEXT_PUBLIC_API_URL;
 
 export const loadTags = async (dispatch) => {
   try {
-    const res = await axios.get("/api/tag");
+    const res = await axios.get('/api/tag');
     dispatch({
       type: LOAD_TAGS_SUCCESS,
       payload: res.data,
@@ -20,3 +20,5 @@ export const loadTags = async (dispatch) => {
     });
   }
 };
+
+export default loadTags;

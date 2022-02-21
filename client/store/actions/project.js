@@ -1,11 +1,11 @@
-import axios from "axios";
-import { LOAD_PROJECTS_SUCCESS, LOAD_PROJECTS_FAILURE } from "../types";
+import axios from 'axios';
+import { LOAD_PROJECTS_SUCCESS, LOAD_PROJECTS_FAILURE } from '../types';
 
-const url = process.env.NEXT_PUBLIC_API_URL;
+// const url = process.env.NEXT_PUBLIC_API_URL;
 
-export const loadProjects = async(dispatch) => {
+export const loadProjects = async (dispatch) => {
   try {
-    const res = await axios.get("/api/project");
+    const res = await axios.get('/api/project');
     dispatch({
       type: LOAD_PROJECTS_SUCCESS,
       payload: res.data,
@@ -20,3 +20,5 @@ export const loadProjects = async(dispatch) => {
     });
   }
 };
+
+export default loadProjects;

@@ -1,0 +1,12 @@
+@import '../library';
+
+.layout {
+  padding: 120px 0 40px;
+  background-color: $background_light;
+  min-height: calc(100vh - 44px);
+}
+
+.MuiImageListItemBar-root > .MuiImageListItemBar-titleWrap {
+  position: absolute;
+  bottom: 0;
+}

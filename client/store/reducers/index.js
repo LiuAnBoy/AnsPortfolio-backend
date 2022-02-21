@@ -1,9 +1,10 @@
-import { combineReducers } from "redux";
-import experienceReducer from "./experience";
-import projectReducer from "./project";
-import tagReducer from "./tag";
-import profileReducer from "./profile";
-import emailReducer from "./email";
+import { combineReducers } from 'redux';
+
+import experienceReducer from './experience';
+import projectReducer from './project';
+import tagReducer from './tag';
+import profileReducer from './profile';
+import emailReducer from './email';
 
 const reducers = {
   experience: experienceReducer,

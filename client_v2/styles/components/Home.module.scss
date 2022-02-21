@@ -1,0 +1,36 @@
+@import '../library';
+
+.home_section {
+  width: 100vw;
+  height: 100vh;
+  max-width: 100%;
+  background-color: $background_light;
+  position: relative;
+
+  &:before {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 65%;
+    right: 0;
+    width: 35%;
+    height: 100vh;
+    background: $default;
+  }
+}
+
+.home_container {
+  display: flex;
+  align-items: center;
+  height: inherit;
+}
+
+.home_container > div {
+  z-index: 1;
+}
+
+.home_container > div > hr {
+  border: 2px solid $primary;
+  width: 70px;
+  margin-left: 0;
+}

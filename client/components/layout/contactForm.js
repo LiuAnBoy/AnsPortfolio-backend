@@ -1,68 +1,73 @@
-import React, { useEffect, useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import TextField from "@material-ui/core/TextField";
-import InputLabel from "@material-ui/core/InputLabel";
-import FormControl from "@material-ui/core/FormControl";
-import { Button } from "@material-ui/core";
-import Select from "@material-ui/core/Select";
-import MenuItem from "@material-ui/core/MenuItem";
-import { useDispatch, useSelector } from "react-redux";
-import { useRouter } from "next/router";
-import { theme } from "../../styles/theme";
+import React, { useEffect, useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import TextField from '@material-ui/core/TextField';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+import { Button } from '@material-ui/core';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import { useDispatch, useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
+
+import { theme } from '../../styles/theme';
 
 // import sendEmail from "../../store/actions/email";
-import sendEmail from "../../store/actions/email";
-import { EMAIL_LOADING, EMAIL_INITIAL, EMAIL_ALL_FILLIN } from "../../store/types";
+import sendEmail from '../../store/actions/email';
+import {
+  EMAIL_LOADING,
+  EMAIL_INITIAL,
+  EMAIL_ALL_FILLIN,
+} from '../../store/types';
 
 const useStyles = makeStyles({
   root: {
     width: 440,
-    margin: "80px auto 0",
-    padding: "12px",
-    [theme.breakpoints.down("xs")]: {
+    margin: '80px auto 0',
+    padding: '12px',
+    [theme.breakpoints.down('xs')]: {
       width: 300,
-      margin: "45px auto 30px",
+      margin: '45px auto 30px',
     },
   },
   textField: {
-    width: "100%",
-    margin: "12px 0",
-    borderColor: "yellow",
+    width: '100%',
+    margin: '12px 0',
+    borderColor: 'yellow',
   },
   select: {
-    width: "100%",
-    margin: "12px 0",
+    width: '100%',
+    margin: '12px 0',
   },
   inputLabel: {
-    margin: "-4px 16px 0",
+    margin: '-4px 16px 0',
   },
   button: {
-    margin: "12px 0",
-    backgroundColor: "#2caeba",
-    color: "#bff8fd",
-    padding: "8px 18px",
-    boxShadow: "0 1px 3px rgb(0 0 0 / 20%)",
-    transition: "all 0.3s linear",
+    margin: '12px 0',
+    backgroundColor: '#2caeba',
+    color: '#bff8fd',
+    padding: '8px 18px',
+    boxShadow: '0 1px 3px rgb(0 0 0 / 20%)',
+    transition: 'all 0.3s linear',
     fontWeight: 700,
     letterSpacing: 2,
-    width: "100%",
-    "&:hover": {
-      backgroundColor: "#88ebf2",
-      color: "#102a42",
+    width: '100%',
+    '&:hover': {
+      backgroundColor: '#88ebf2',
+      color: '#102a42',
     },
   },
   button_disabled: {
-    margin: "12px 0",
-    backgroundColor: "#e6e6e6",
-    color: "#bff8fd",
-    padding: "8px 18px",
-    boxShadow: "0 1px 3px rgb(0 0 0 / 20%)",
-    transition: "all 0.3s linear",
+    margin: '12px 0',
+    backgroundColor: '#e6e6e6',
+    color: '#bff8fd',
+    padding: '8px 18px',
+    boxShadow: '0 1px 3px rgb(0 0 0 / 20%)',
+    transition: 'all 0.3s linear',
     fontWeight: 700,
     letterSpacing: 2,
-    width: "100%",
+    width: '100%',
   },
 });
 
@@ -74,14 +79,18 @@ const ContactForm = () => {
   const email = useSelector((state) => state.email);
 
   const [formData, setFormData] = useState({
-    name: "",
-    contact: "",
-    question: "",
-    request: "",
+    name: '',
+    contact: '',
+    question: '',
+    request: '',
   });
 
   useEffect(() => {
-    if (formData.name !== "" && formData.contact !== "" && formData.question !== "") {
+    if (
+      formData.name !== '' &&
+      formData.contact !== '' &&
+      formData.question !== ''
+    ) {
       dispatch({
         type: EMAIL_ALL_FILLIN,
         payload: formData,
@@ -134,8 +143,14 @@ const ContactForm = () => {
               onChange={handleChange}
               disabled={email.formDisabled}
             />
-            <FormControl required className={classes.select} disabled={email.formDisabled}>
-              <InputLabel className={classes.inputLabel}>想詢問的問題</InputLabel>
+            <FormControl
+              required
+              className={classes.select}
+              disabled={email.formDisabled}
+            >
+              <InputLabel className={classes.inputLabel}>
+                想詢問的問題
+              </InputLabel>
               <Select
                 value={formData.question}
                 onChange={handleChange}
@@ -169,7 +184,9 @@ const ContactForm = () => {
             type="submit"
             onClick={onSubmit}
             disabled={email.btnDisabled}
-            className={email.btnDisabled ? classes.button_disabled : classes.button}
+            className={
+              email.btnDisabled ? classes.button_disabled : classes.button
+            }
             style={{ backgroundColor: email.btnColor }}
           >
             {email.btnText}

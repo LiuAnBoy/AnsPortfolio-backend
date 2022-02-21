@@ -1,4 +1,4 @@
-import { LOAD_TAGS_SUCCESS, LOAD_TAGS_FAILURE } from "../types";
+import { LOAD_TAGS_SUCCESS, LOAD_TAGS_FAILURE } from '../types';
 
 const initialState = {
   loading: true,
@@ -13,13 +13,13 @@ const loadTags = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        payload: payload,
+        payload,
       };
     case LOAD_TAGS_FAILURE:
       return {
         ...state,
         loading: false,
-        payload: payload,
+        payload,
       };
     default:
       return state;

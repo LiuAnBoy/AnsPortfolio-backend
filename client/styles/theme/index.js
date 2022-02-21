@@ -17,6 +17,7 @@ export const theme = createTheme({
     text: {
       main: '#102a42',
       hover: '#2caeba',
+      icon: '#00b3b3',
     },
   },
 });

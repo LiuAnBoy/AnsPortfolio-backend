@@ -1,0 +1,13 @@
+@import '../library';
+
+.section {
+  @include section($background_dark);
+}
+
+.button {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 24px;
+  letter-spacing: 2px;
+}

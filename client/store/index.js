@@ -1,18 +1,19 @@
-import { useMemo } from "react";
-import { createStore, applyMiddleware } from "redux";
-import { composeWithDevTools } from "redux-devtools-extension";
-import thunk from "redux-thunk";
-import rootReducer from "./reducers";
+import { useMemo } from 'react';
+import { createStore, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import thunk from 'redux-thunk';
+import rootReducer from './reducers';
 
 const middleware = [thunk];
 
 let store;
 
-const initStore = (initialState) => createStore(
-  rootReducer,
-  initialState,
-  composeWithDevTools(applyMiddleware(...middleware)),
-);
+const initStore = (initialState) =>
+  createStore(
+    rootReducer,
+    initialState,
+    composeWithDevTools(applyMiddleware(...middleware))
+  );
 
 export const initializeStore = (preloadedState) => {
   let _store = store ?? initStore(preloadedState);
@@ -29,13 +30,14 @@ export const initializeStore = (preloadedState) => {
   }
 
   // For SSG and SSR always create a new store
-  if (typeof window === "undefined") return _store;
+  if (typeof window === 'undefined') return _store;
   // Create the store once in the client
   if (!store) store = _store;
 
   return _store;
 };
 
+/* eslint "no-shadow": "off" */
 export function useStore(initialState) {
   const store = useMemo(() => initializeStore(initialState), [initialState]);
   return store;

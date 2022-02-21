@@ -1,4 +1,4 @@
-import { LOAD_PROFILE_FAILURE, LOAD_PROFILE_SUCCESS } from "../types";
+import { LOAD_PROFILE_FAILURE, LOAD_PROFILE_SUCCESS } from '../types';
 
 const initialState = {
   loading: true,
@@ -12,7 +12,7 @@ const Profile = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        payload: payload,
+        payload,
       };
     case LOAD_PROFILE_FAILURE:
       return {

@@ -1,10 +1,11 @@
-import React from "react";
-import { Provider } from "react-redux";
-import { useStore } from "../store";
-import NavBar from "../components/layout/navBar";
-import Footer from "../components/sections/footer";
-import "../styles/globals.css";
+import React from 'react';
+import { Provider } from 'react-redux';
+import { useStore } from '../store';
+import NavBar from '../components/layout/NavBar';
+import Footer from '../components/layout/Footer';
+import '../styles/globals.css';
 
+/* eslint "react/prop-types": "off" */
 function MyApp({ Component, pageProps }) {
   const store = useStore(pageProps.initialReduxState);
   return (

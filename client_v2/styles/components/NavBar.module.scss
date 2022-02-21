@@ -1,0 +1,31 @@
+@import '../library';
+
+.appbar {
+  background-color: $background_nav;
+}
+
+.nav_icon {
+  width: 40px;
+}
+
+.nav_button {
+  color: $text_main_color;
+  padding: 6px 18px;
+  background-color: inherit;
+  font-size: 16px;
+  text-transform: uppercase;
+  margin: 12px 36px;
+  cursor: pointer;
+  transition-duration: 0.5s;
+  &:hover {
+    color: $primary;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .nav_icon_box {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}

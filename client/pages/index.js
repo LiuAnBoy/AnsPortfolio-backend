@@ -1,16 +1,19 @@
-import React from "react";
-import Home from "../components/sections/home";
-import Experience from "../components/sections/experience";
-import Project from "../components/sections/projects";
-import Helmet from "../components/shared/helmet";
+import React from 'react';
 
-const HomePage = () => (
-  <>
-    <Helmet subtitle="Home" siteTitle="Home" />
-    <Home />
-    <Experience />
-    <Project />
-  </>
-);
+import Helmet from '../components/shared/Helmet';
+import Home from '../components/home';
+import Experience from '../components/experience';
+import Project from '../components/projects';
+
+function HomePage() {
+  return (
+    <>
+      <Helmet subtitle="Home" siteTitle="Home" />
+      <Home />
+      <Experience />
+      <Project />
+    </>
+  );
+}
 
 export default HomePage;

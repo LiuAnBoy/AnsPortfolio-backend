@@ -1,44 +1,47 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import { Typography } from "@material-ui/core";
-import { theme } from "../../styles/theme";
+import React from 'react';
+import { Typography } from '@material-ui/core';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
-const useStyles = makeStyles({
-  root: {
-    margin: "0 0 60px",
-    width: "100vw",
-    maxWidth: "100%",
-    [theme.breakpoints.up("xs")]: {
-      margin: "0 0 30px",
-    },
-  },
-  title: {
-    fontWeight: 700,
-    letterSpacing: 2,
-    color: theme.palette.text.main,
-    margin: "0 0 10px 0",
-    textAlign: "center",
-    width: "100vw",
-    maxWidth: "100%",
-  },
-  underline: {
-    background: theme.palette.primary.dark,
-    height: "4px",
-    width: "80px",
-    margin: "0 auto",
-  },
-});
+import { theme } from '../../styles/theme';
 
-const Title = ({ title }) => {
-  const classes = useStyles();
-  return (
-    <div className={classes.root}>
-      <Typography variant="h4" className={classes.title}>
-        {title}
-      </Typography>
-      <div className={classes.underline}></div>
-    </div>
-  );
+const RootStyle = styled.div`
+  margin: 0 0 40px;
+  width: 100vw;
+  max-width: 100%;
+  @media (max-width: 414px) {
+    margin: 0 0 30px;
+  }
+
+  .title-text {
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: ${theme.palette.text.main};
+    margin: 0 0 10px 0;
+    text-align: center;
+    width: 100vw;
+    max-width: 100%;
+  }
+
+  .title-underline {
+    background-color: ${theme.palette.primary.dark};
+    height: 4px;
+    width: 80px;
+    margin: 0 auto;
+  }
+`;
+
+const Title = ({ title }) => (
+  <RootStyle>
+    <Typography variant="h3" className="title-text">
+      {title}
+    </Typography>
+    <div className="title-underline" />
+  </RootStyle>
+);
+
+Title.propTypes = {
+  title: PropTypes.string.isRequired,
 };
 
 export default Title;
