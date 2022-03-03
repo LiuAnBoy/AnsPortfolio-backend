@@ -4,7 +4,7 @@ const wakeUpDyno = require("./functions/wakeUpDyno");
 
 const app = express();
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8000;
 
 // Init Middleware
 app.use(express.json({ extended: false }));
@@ -13,13 +13,18 @@ app.use(express.json({ extended: false }));
 connectDB();
 
 // Define Routes
-app.use("/api/experience", require("./routes/api/experience"));
-app.use("/api/project", require("./routes/api/project"));
-app.use("/api/tag", require("./routes/api/tag"));
-app.use("/api/profile", require("./routes/api/profile"));
+app.use("/api", require("./routes/api/experience"));
+app.use("/api", require("./routes/api/project"));
+app.use("/api", require("./routes/api/tag"));
+app.use("/api", require("./routes/api/profile"));
 
-// app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
-app.listen(PORT, () => {
-  wakeUpDyno("https://api.luansportfolio.com/");
-  wakeUpDyno("https://www.luansportfolio.com/");
-});
+if (process.env.NODE_ENV === "development") {
+  app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+}
+
+if (process.env.NODE_ENV === "production") {
+  app.listen(PORT, () => {
+    wakeUpDyno("https://api.luansportfolio.com/");
+    wakeUpDyno("https://www.luansportfolio.com/");
+  });
+}

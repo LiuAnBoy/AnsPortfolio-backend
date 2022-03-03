@@ -36,8 +36,8 @@ yarn-error.log*
 # vercel
 */.vercel
 
-#client
-/client
+# #client
+# /client
 
 
 

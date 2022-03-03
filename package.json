@@ -4,8 +4,8 @@
   "description": "CLA Portfolio",
   "main": "server.js",
   "scripts": {
-    "start": "node server",
-    "server": "nodemon sever",
+    "start": "NODE_ENV=production node server",
+    "server": "NODE_ENV=development nodemon sever ",
     "client": "npm run dev --prefix client",
     "dev": "concurrently \"yarn server\" \"yarn client\"",
     "lint": "eslint **/*.js"

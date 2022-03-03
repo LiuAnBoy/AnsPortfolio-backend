@@ -9,22 +9,27 @@ const Project = require("../../models/Project");
 // @route   Get api/tag
 // @desc    Get all tags
 // @access  Public
-router.get("/", async (req, res) => {
+router.get("/tags", async (req, res) => {
   try {
-    const data = await Tag.find()
-      .sort({ name: -1 })
-      .populate("projects", ["name", "image"]);
-    return res.json(data);
+    const data = await Tag.find({}, { __v: 0, projects: 0 }).sort({ name: -1 });
+    // .populate("projects", ["name", "image"]);
+    return res.json({
+      status: 200,
+      data: data,
+    });
   } catch (error) {
     console.error(error.message);
-    return res.status(500).send("Server Error");
+    return res.status(500).send({
+      status: 500,
+      data: error.message,
+    });
   }
 });
 
 // @route   Get api/tag/:id
 // @desc    Get a tags
 // @access  Public
-router.get("/:id", async (req, res) => {
+router.get("/tag/:id", async (req, res) => {
   try {
     const data = await Tag.findOne({ _id: req.params.id }).populate(
       "projects",
@@ -40,7 +45,7 @@ router.get("/:id", async (req, res) => {
 // @route   Post api/tag
 // @desc    Add New tag
 // @access  Public
-router.post("/", async (req, res) => {
+router.post("/tag", async (req, res) => {
   const { name } = req.body;
 
   const Data = new Tag({
@@ -59,7 +64,7 @@ router.post("/", async (req, res) => {
 // @route   Delete api/tag/:id
 // @desc    Delete a tag
 // @access  Public
-router.delete("/:id", async (req, res) => {
+router.delete("/tag/:id", async (req, res) => {
   try {
     const tag = await Tag.findById(req.params.id);
 

@@ -8,10 +8,10 @@ const Profile = require("../../models/Profile");
 // @route   Get api/profile
 // @desc    Get Profile
 // @access  Public
-router.get("/", async (req, res) => {
+router.get("/profile", async (req, res) => {
   try {
-    const data = await Profile.findOne();
-    res.json(data);
+    const data = await Profile.findOne({}, { __v: 0, createAt: 0 });
+    res.status(200).send(data);
   } catch (error) {
     console.error(error.message);
     res.status(500).send("Server Error");
@@ -21,7 +21,7 @@ router.get("/", async (req, res) => {
 // @route   Post api/profile
 // @desc    Post Profile or Update
 // @access  Public
-router.post("/", async (req, res) => {
+router.post("/profile", async (req, res) => {
   const {
     avatar,
     name,
@@ -59,14 +59,14 @@ router.post("/", async (req, res) => {
         { new: true }
       );
 
-      return res.json(profile);
+      return res.status(200).send(profile);
     }
     profile = new Profile(profileData);
     await profile.save();
-    res.json(profile);
+    return res.status(200).send(profile);
   } catch (error) {
     console.error(error.message);
-    res.status(500).send("Server Error");
+    return res.status(500).send("Server Error");
   }
 });
 
