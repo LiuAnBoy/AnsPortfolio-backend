@@ -42,10 +42,7 @@ router.get("/projects", async (req, res) => {
           $project: { "tags.createAt": 0, "tags.projects": 0, "tags.__v": 0 },
         },
       ]);
-      return res.json({
-        status: 200,
-        data: data,
-      });
+      return res.status(200).send(data);
     }
 
     const data = await Project.find({}, { __v: 0 })
