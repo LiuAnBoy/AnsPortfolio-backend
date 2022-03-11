@@ -31,6 +31,7 @@ router.get("/projects", async (req, res) => {
             name: { $first: "$name" },
             description: { $first: "$description" },
             company: { $first: "$company" },
+            number: { $first: "$number" },
             tags: { $first: "$tags" },
           },
         },
