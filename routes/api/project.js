@@ -1,5 +1,4 @@
 const express = require("express");
-const querystring = require("querystring");
 
 const router = express.Router();
 
@@ -88,19 +87,15 @@ router.get("/project/:id", async (req, res) => {
 // @access  Public
 router.get("/projects/featured", async (req, res) => {
   try {
-    const data = await Project.find({}, { __v: 0, createAt: 0 })
+    const data = await Project.find({ featured: true }, { __v: 0, createAt: 0 })
       .sort({ number: -1 })
       .populate("tags", "name");
 
-    const featuredData = data.filter((d) => {
-      const featured = d.featured === true;
-      return featured;
-    });
-
-    if (featuredData.length === 0) {
+    if (data.length === 0) {
       return res.status(404).send("No featured project found");
     }
-    return res.status(200).send(featuredData);
+
+    return res.status(200).json(data);
   } catch (error) {
     console.error(error.message);
     return res.status(500).send(error.message);
@@ -110,15 +105,25 @@ router.get("/projects/featured", async (req, res) => {
 // @route   Post api/project
 // @desc    Create project
 // @access  Public
-router.post("/", async (req, res) => {
-  const { image, number, name, company, description, featured, url, tags } =
-    req.body;
+router.post("/project", async (req, res) => {
+  const {
+    image,
+    number,
+    name,
+    company,
+    introduce,
+    description,
+    featured,
+    url,
+    tags,
+  } = req.body;
 
   const Data = new Project({
     image,
     number,
     name,
     company,
+    introduce,
     description,
     featured,
     url,
@@ -140,31 +145,22 @@ router.post("/", async (req, res) => {
       });
     }
 
-    return res.json({
-      status: 200,
-      res: project,
-    });
+    return res.status(200).send(project);
   } catch (error) {
     console.error(error.message);
-    return res.status(500).send({
-      status: 500,
-      message: error.message,
-    });
+    return res.status(500).send(error.message);
   }
 });
 
 // @route   Delete api/project/:id
 // @desc    Delete a project
 // @access  Public
-router.delete("/:id", async (req, res) => {
+router.delete("/project/:id", async (req, res) => {
   try {
     const project = await Project.findById(req.params.id);
 
     if (!project) {
-      return res.status(404).json({
-        status: 404,
-        message: "Project not found",
-      });
+      return res.status(404).json("Project not found");
     }
 
     if (project.tags.length > 0) {
@@ -177,22 +173,13 @@ router.delete("/:id", async (req, res) => {
     }
 
     await project.remove();
-    return res.json({
-      status: 200,
-      msg: "Project has removed",
-    });
+    return res.status(200).send("Project has removed");
   } catch (error) {
     console.error(error.message);
     if (error.kind === "ObjectId") {
-      return res.status(404).json({
-        status: 404,
-        message: "Project not found",
-      });
+      return res.status(404).json("Project not found");
     }
-    return res.status(500).send({
-      status: 500,
-      message: error.message,
-    });
+    return res.status(500).send(error.message);
   }
 });
 

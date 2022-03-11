@@ -16,6 +16,9 @@ const ProjectSchema = new mongoose.Schema({
   company: {
     type: String,
   },
+  introduce: {
+    type: String,
+  },
   description: {
     type: String,
   },
