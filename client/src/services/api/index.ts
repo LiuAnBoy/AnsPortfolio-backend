@@ -1,6 +1,9 @@
 import axios, { AxiosRequestConfig } from 'axios';
 
-const baseUrl = 'http://localhost:8000';
+const baseUrl =
+  process.env.NODE_ENV === 'production'
+    ? 'https://api.luansportfolio.com/'
+    : 'http://localhost:8000';
 
 export const getRequest = async (apiRoute: string, bodyParams?: any) => {
   const url = baseUrl + apiRoute;
