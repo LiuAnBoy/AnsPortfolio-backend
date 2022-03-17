@@ -6,9 +6,10 @@
   "scripts": {
     "start": "NODE_ENV=production node server",
     "server": "NODE_ENV=development nodemon sever ",
-    "client": "npm run dev --prefix client",
+    "client": "yarn dev --prefix client",
     "dev": "concurrently \"yarn server\" \"yarn client\"",
-    "lint": "eslint **/*.js"
+    "lint": "eslint **/*.js",
+    "heroku-build": "YARN_PRODUCTION=false yarn --prefix client && yarn build --prefix client"
   },
   "author": "CLA",
   "license": "ISC",
