@@ -39,7 +39,15 @@ yarn-error.log*
 */.vercel
 
 # #client
-# /client
+/client/node_modules
+/client/build
+/client/.pnp
+/client/.pnp.js
+/client/coverage
+/client/.DS_Store
+/client/npm-debug.log*
+/client/yarn-debug.log*
+/client/yarn-error.log*
 
 
 
