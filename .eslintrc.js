@@ -1,42 +1,74 @@
 module.exports = {
   env: {
-    commonjs: true,
+    browser: true,
     es2021: true,
     node: true,
   },
-  extends: ["airbnb-base", "prettier", "plugin:node/recommended"],
-  plugins: ["prettier"],
-  parser: "babel-eslint",
+  plugins: ['react', '@typescript-eslint', 'prettier'],
+  extends: [
+    'airbnb',
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:prettier/recommended',
+  ],
+  parser: '@typescript-eslint/parser',
   parserOptions: {
-    parser: "babel-eslint",
+    ecmaFeatures: {
+      jsx: true,
+    },
+    ecmaVersion: 'latest',
+    sourceType: 'module',
   },
   rules: {
-    "prettier/prettier": "error",
-    "no-unused-vars": "warn",
-    "no-console": "off",
-    "func-names": "off",
-    "no-process-exit": "off",
-    "object-shorthand": "off",
-    "class-methods-use-this": "off",
-    yoda: ["error", "never"],
-    "no-underscore-dangle": ["error", { allow: ["_id"] }],
-    "no-shadow": "off",
-    "space-before-function-paren": [
-      "error",
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': ['warn'],
+    'react/jsx-filename-extension': [0, { extensions: ['.js', '.jsx'] }],
+    'react/prop-types': 'off', // Since we do not use prop-types
+    'react/require-default-props': 'off', // Since we do not use prop-types
+    'import/prefer-default-export': 0,
+    // https://stackoverflow.com/questions/64463299/no-shadow-false-positive-when-declaring-any-typescript-enum-in-jhipster-app
+    // turn off js no shadow and use ts instead
+    'no-shadow': 'off',
+    '@typescript-eslint/no-shadow': ['error'],
+    '@typescript-eslint/explicit-module-boundary-types': ['off'],
+    'react/jsx-props-no-spreading': 0,
+    'no-use-before-define': 'off',
+    '@typescript-eslint/no-use-before-define': ['error'],
+    camelcase: 0,
+    'arrow-body-style': 'off',
+    'import/extensions': [
+      'error',
+      'always',
       {
-        anonymous: "always",
-        named: "always",
-        asyncArrow: "always",
+        ts: 'never',
+        tsx: 'never',
+        js: 'never',
+        jsx: 'never',
       },
     ],
-    "prefer-const": [
-      "error",
+    'object-curly-newline': ['off'],
+    'space-before-function-paren': [
+      'error',
       {
-        destructuring: "any",
-        ignoreReadBeforeAssign: false,
+        anonymous: 'never',
+        named: 'never',
+        asyncArrow: 'always',
       },
     ],
-    quotes: ["error", "double"],
-    "quote-props": ["error", "as-needed"],
+    yoda: ['error', 'never'],
+    'no-underscore-dangle': ['error', { allow: ['_id', '_store'] }],
+    'react/function-component-definition': 'off',
+    'react/react-in-jsx-scope': 'off',
+  },
+  settings: {
+    'import/extensions': ['.js', '.jsx', '.ts', '.tsx'],
+    'import/parsers': {
+      '@typescript-eslint/parser': ['.ts', '.tsx'],
+    },
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      },
+    },
   },
 };

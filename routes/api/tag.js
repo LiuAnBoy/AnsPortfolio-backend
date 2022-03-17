@@ -1,51 +1,45 @@
-const express = require("express");
+const express = require('express');
 
 const router = express.Router();
 
 // Import Model
-const Tag = require("../../models/Tag");
-const Project = require("../../models/Project");
+const Tag = require('../../models/Tag');
+const Project = require('../../models/Project');
 
 // @route   Get api/tag
 // @desc    Get all tags
 // @access  Public
-router.get("/tags", async (req, res) => {
+router.get('/tags', async (req, res) => {
   try {
     const data = await Tag.find({}, { __v: 0, projects: 0 }).sort({ name: -1 });
     // .populate("projects", ["name", "image"]);
-    return res.json({
-      status: 200,
-      data: data,
-    });
+    return res.status(200).json(data);
   } catch (error) {
     console.error(error.message);
-    return res.status(500).send({
-      status: 500,
-      data: error.message,
-    });
+    return res.status(500).send(error.message);
   }
 });
 
 // @route   Get api/tag/:id
 // @desc    Get a tags
 // @access  Public
-router.get("/tag/:id", async (req, res) => {
+router.get('/tag/:id', async (req, res) => {
   try {
     const data = await Tag.findOne({ _id: req.params.id }).populate(
-      "projects",
-      ["name", "image"]
+      'projects',
+      ['name', 'image']
     );
     return res.json(data);
   } catch (error) {
     console.error(error.message);
-    return res.status(500).send("Server Error");
+    return res.status(500).send('Server Error');
   }
 });
 
 // @route   Post api/tag
 // @desc    Add New tag
 // @access  Public
-router.post("/tag", async (req, res) => {
+router.post('/tag', async (req, res) => {
   const { name } = req.body;
 
   const Data = new Tag({
@@ -57,19 +51,19 @@ router.post("/tag", async (req, res) => {
     return res.json(tag);
   } catch (error) {
     console.error(error.message);
-    return res.status(500).send("Server Error");
+    return res.status(500).send('Server Error');
   }
 });
 
 // @route   Delete api/tag/:id
 // @desc    Delete a tag
 // @access  Public
-router.delete("/tag/:id", async (req, res) => {
+router.delete('/tag/:id', async (req, res) => {
   try {
     const tag = await Tag.findById(req.params.id);
 
     if (!tag) {
-      return res.status(404).json({ msg: "Tag not found" });
+      return res.status(404).json({ msg: 'Tag not found' });
     }
 
     const projects = await Project.find({ _id: tag.linkWith });
@@ -82,13 +76,13 @@ router.delete("/tag/:id", async (req, res) => {
     }
 
     await tag.remove();
-    return res.json({ msg: "Tag has removed!! " });
+    return res.json({ msg: 'Tag has removed!! ' });
   } catch (error) {
     console.error(error.message);
-    if (error.kind === "ObjectId") {
-      return res.status(404).json({ msg: "Project not found" });
+    if (error.kind === 'ObjectId') {
+      return res.status(404).json({ msg: 'Project not found' });
     }
-    return res.status(500).send("Server Error");
+    return res.status(500).send('Server Error');
   }
 });
 

@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
@@ -7,7 +7,7 @@ const ProjectSchema = new mongoose.Schema({
     type: String,
   },
   number: {
-    type: Number,
+    type: String,
   },
   name: {
     type: String,
@@ -25,7 +25,7 @@ const ProjectSchema = new mongoose.Schema({
   tags: [
     {
       type: Schema.Types.ObjectId,
-      ref: "tag",
+      ref: 'tag',
     },
   ],
   featured: {
@@ -39,12 +39,17 @@ const ProjectSchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
-  createAt: {
+  createdAt: {
     type: Date,
     default: Date.now,
   },
+  updatedAt: [
+    {
+      type: Date,
+    },
+  ],
 });
 
-const Project = mongoose.model("project", ProjectSchema);
+const Project = mongoose.model('project', ProjectSchema);
 
 module.exports = Project;

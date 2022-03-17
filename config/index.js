@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-require("dotenv").config();
+const mongoose = require('mongoose');
+require('dotenv').config({ path: `.env.${process.env.NODE_ENV}` });
 
 const db = process.env.mongoURI;
 
@@ -12,7 +12,7 @@ const connectDB = async () => {
       useFindAndModify: false,
     });
 
-    console.log("MongoDB Connected...");
+    console.log('MongoDB Connected...');
   } catch (error) {
     console.log(error);
     // Exit process with failure

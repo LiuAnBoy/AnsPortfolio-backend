@@ -1,6 +1,7 @@
-const express = require("express");
-const connectDB = require("./config");
-const wakeUpDyno = require("./functions/wakeUpDyno");
+const express = require('express');
+const cors = require('cors');
+const connectDB = require('./config');
+const wakeUpDyno = require('./functions/wakeUpDyno');
 
 const app = express();
 
@@ -12,19 +13,21 @@ app.use(express.json({ extended: false }));
 // Connect MongoDB
 connectDB();
 
-// Define Routes
-app.use("/api", require("./routes/api/experience"));
-app.use("/api", require("./routes/api/project"));
-app.use("/api", require("./routes/api/tag"));
-app.use("/api", require("./routes/api/profile"));
+app.use(cors());
 
-if (process.env.NODE_ENV === "development") {
+// Define Routes
+app.use('/api', require('./routes/api/experience'));
+app.use('/api', require('./routes/api/project'));
+app.use('/api', require('./routes/api/tag'));
+app.use('/api', require('./routes/api/profile'));
+
+if (process.env.NODE_ENV === 'development') {
   app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
 }
 
-if (process.env.NODE_ENV === "production") {
+if (process.env.NODE_ENV === 'production') {
   app.listen(PORT, () => {
-    wakeUpDyno("https://api.luansportfolio.com/");
-    wakeUpDyno("https://www.luansportfolio.com/");
+    wakeUpDyno('https://api.luansportfolio.com/');
+    wakeUpDyno('https://www.luansportfolio.com/');
   });
 }
