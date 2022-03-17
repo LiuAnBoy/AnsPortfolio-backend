@@ -16,6 +16,7 @@
   "dependencies": {
     "cloudinary": "^1.28.1",
     "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
     "dotenv": "^10.0.0",
     "dotenv-webpack": "^7.0.3",
     "express": "^4.17.1",
@@ -30,7 +31,6 @@
     "@typescript-eslint/parser": "^5.14.0",
     "babel-eslint": "^10.1.0",
     "concurrently": "^6.2.0",
-    "cross-env": "^7.0.3",
     "eslint": "^8.11.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-node": "^4.1.0",
