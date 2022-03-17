@@ -1,10 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios';
 
-const baseUrl = 'http://localhost:8000';
-
 export const getRequest = async (apiRoute: string, bodyParams?: any) => {
-  const url = baseUrl + apiRoute;
-
   let params;
 
   if (!bodyParams) {
@@ -21,12 +17,10 @@ export const getRequest = async (apiRoute: string, bodyParams?: any) => {
     params,
   };
 
-  return axios.get(url, config);
+  return axios.get(apiRoute, config);
 };
 
 export const postRequest = async (apiRoute: string, bodyParams?: any) => {
-  const url = baseUrl + apiRoute;
-
   let params;
   if (!bodyParams) {
     params = null;
@@ -41,12 +35,10 @@ export const postRequest = async (apiRoute: string, bodyParams?: any) => {
     },
   };
 
-  return axios.post(url, params, config);
+  return axios.post(apiRoute, params, config);
 };
 
 export const patchRequest = async (apiRoute: string, bodyParams?: any) => {
-  const url = baseUrl + apiRoute;
-
   let params;
   if (!bodyParams) {
     params = null;
@@ -61,12 +53,10 @@ export const patchRequest = async (apiRoute: string, bodyParams?: any) => {
     },
   };
 
-  return axios.patch(url, params, config);
+  return axios.patch(apiRoute, params, config);
 };
 
 export const deleteRequest = async (apiRoute: string) => {
-  const url = baseUrl + apiRoute;
-
   const config: AxiosRequestConfig = {
     headers: {
       Accept: 'application/json',
@@ -74,5 +64,5 @@ export const deleteRequest = async (apiRoute: string) => {
     },
   };
 
-  return axios.delete(url, config);
+  return axios.delete(apiRoute, config);
 };
