@@ -4,7 +4,7 @@
   "description": "CLA Portfolio",
   "main": "server.js",
   "scripts": {
-    "start": "NODE_ENV=production node server",
+    "start": "NODE_ENV=production yarn heroku-build && node server",
     "server": "NODE_ENV=development nodemon sever ",
     "client": "yarn dev --prefix client",
     "dev": "concurrently \"yarn server\" \"yarn client\"",
