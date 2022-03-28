@@ -1,28 +1,23 @@
-import * as React from 'react';
+import React from 'react';
 import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
 
-// import Link from '../src/Link';
-// import ProTip from '../src/ProTip';
-// import Copyright from '../src/Copyright';
 import Layout from '../presentation/components/Layout';
+import Profile from '../presentation/components/About/Profile';
+
+import styles from '../styles/pages/About.module.scss';
+import Helmet from '../presentation/components/Helmet';
 
 function About() {
   return (
-    <Container maxWidth="lg">
-      <Box
-        sx={{
-          my: 4,
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        123
-      </Box>
-    </Container>
+    <section className={styles.layout}>
+      <Helmet
+        subtitle="About Me"
+        siteDescription="走上前端工程師這一條路其實也是一件意想不到的事情。從大學畢業專題負責網頁部分開始就對網頁產生興趣。"
+      />
+      <Container maxWidth="md">
+        <Profile />
+      </Container>
+    </section>
   );
 }
 

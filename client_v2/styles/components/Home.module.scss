@@ -1,36 +1,240 @@
 @import '../library';
 
-.home_section {
+.section {
   width: 100vw;
   height: 100vh;
   max-width: 100%;
-  background-color: $background_light;
+  background-color: $background_dark;
   position: relative;
-
-  &:before {
-    position: absolute;
-    content: '';
-    top: 0;
-    left: 65%;
-    right: 0;
-    width: 35%;
-    height: 100vh;
-    background: $default;
-  }
 }
 
-.home_container {
+.container-md {
   display: flex;
   align-items: center;
   height: inherit;
+  @media (max-width: 450px) {
+    display: none;
+  }
 }
 
-.home_container > div {
+.container-sm {
+  display: none;
+  @media (max-width: 450px) {
+    display: block;
+  }
+}
+
+.ani-container {
+  width: 100vw;
+  height: 60vh;
+  background-color: $background_dark;
+  position: relative;
+  display: flex;
+  justify-content: space-around;
   z-index: 1;
+
+  @media (max-width: 450px) {
+    position: absolute;
+    height: 18vh;
+    bottom: 140px;
+  }
 }
 
-.home_container > div > hr {
-  border: 2px solid $primary;
-  width: 70px;
-  margin-left: 0;
+.ani-bg-line {
+  height: 3px;
+  border: 0;
+  background-color: #fff;
+  left: 50%;
+  transform: translateX(-50%);
+  animation-name: ani;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-direction: alternate;
+
+  position: absolute;
+}
+
+.line-top {
+  animation-delay: 0.8s;
+  align-self: start;
+}
+
+.line-mid {
+  animation-delay: 0.9s;
+  align-self: center;
+}
+
+.line-bottom {
+  animation-delay: 1s;
+  align-self: end;
+}
+
+.marquee-con {
+  height: 60vh;
+  display: flex;
+  position: absolute;
+  width: 100%;
+  flex-direction: column;
+  justify-content: space-around;
+  animation-name: marquee;
+  animation-fill-mode: backwards;
+  animation-delay: 1.4s;
+}
+
+.marquee {
+  background-color: rgba(0, 0, 0, 0);
+  height: 50%;
+  font-size: 170px;
+  color: #fff;
+  letter-spacing: 2px;
+  @media screen and (max-width: 450px) {
+    font-size: 72px;
+    position: relative;
+    animation-name: marquee;
+    animation-fill-mode: backwards;
+    animation-delay: 1.4s;
+    height: inherit;
+  }
+}
+
+.logo-section {
+  position: absolute;
+  width: 40vw;
+  z-index: 1;
+  left: 50%;
+  transform: translateX(-50%);
+  animation-name: ani-logo;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-direction: alternate;
+  animation-delay: 1.6s;
+  opacity: 0;
+  height: calc(100% - 18vw);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0);
+  @media (max-width: 1025px) {
+    width: 66vw;
+  }
+
+  @media (max-width: 450px) {
+    position: relative;
+    width: 70vw;
+    height: auto;
+    top: 120px;
+    animation-delay: 0.6s;
+  }
+}
+
+@keyframes ani {
+  from {
+    width: 0;
+  }
+  to {
+    width: calc(100% - 25vw);
+  }
+}
+
+@keyframes marquee {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes ani-logo {
+  0% {
+    // height: 0;
+    opacity: 0;
+  }
+  45% {
+    opacity: 0;
+  }
+  100% {
+    display: block;
+    opacity: 1;
+    // height: calc(100% - 18vw);
+  }
+}
+
+$base: 0.6rem;
+
+.chevron-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  // background-color: #fff;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 36px;
+  z-index: 1;
+  opacity: 0;
+  animation-name: ani-logo;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-direction: alternate;
+  animation-delay: 1.9s;
+  transition: ease-in 0.2s;
+  cursor: pointer;
+}
+
+.chevron {
+  top: -20px;
+  position: absolute;
+  width: $base * 3.5;
+  height: $base * 0.4;
+  opacity: 0;
+  transform: scale(0.3);
+  animation: move-chevron 3s ease-out infinite;
+}
+
+.chevron:first-child {
+  animation: move-chevron 3s ease-out 1s infinite;
+}
+
+.chevron:nth-child(2) {
+  animation: move-chevron 3s ease-out 2s infinite;
+}
+
+.chevron:before,
+.chevron:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 50%;
+  background: #fff;
+}
+
+.chevron:before {
+  left: 0;
+  transform: skewY(30deg);
+}
+
+.chevron:after {
+  right: 0;
+  width: 50%;
+  transform: skewY(-30deg);
+}
+
+@keyframes move-chevron {
+  25% {
+    opacity: 1;
+  }
+  33.3% {
+    opacity: 1;
+    transform: translateY($base * 3.8);
+  }
+  66.6% {
+    opacity: 1;
+    transform: translateY($base * 5.2);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY($base * 8) scale(0.5);
+  }
 }

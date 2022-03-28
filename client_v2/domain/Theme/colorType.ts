@@ -11,4 +11,20 @@ declare module '@mui/material/styles/createPalette' {
   interface TypeText {
     main: string;
   }
+
+  interface TypeButton {
+    hover?: string;
+    main?: string;
+    text?: string;
+  }
+
+  interface Palette {
+    button: TypeButton;
+    fab: Palette['primary'];
+  }
+
+  interface PaletteOptions {
+    button?: Partial<TypeButton>;
+    fab?: PaletteOptions['primary'];
+  }
 }

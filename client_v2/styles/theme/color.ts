@@ -4,24 +4,32 @@ import { createTheme } from '@mui/material';
 const colorTheme = createTheme({
   palette: {
     primary: {
-      // main: '#23A5B0',
-      main: '#2caeba',
+      main: '#1c1c20',
     },
     secondary: {
-      main: '#DFFCFE',
+      main: '#3F3A40',
     },
     background: {
-      light: '#DFFCFE',
-      dark: '#C6FAFF',
-      nav: '#f8f9f9',
-      footer: '#222',
+      light: '#F6F5F4',
+      dark: '#1c1c20',
+      nav: '#1c1c20',
+      footer: '#1c1c20',
       default: '#fff',
     },
-    // error: {
-    //   main: red.A400,
-    // },
     text: {
       main: '#102A42',
+      primary: '#102A42',
+      secondary: '#102A42',
+    },
+    button: {
+      main: '#1c1c20',
+      hover: '#2b6cee',
+    },
+    fab: {
+      main: '#00b0ff',
+      dark: '#ffa726',
+      light: '#66bb6a',
+      contrastText: '#d32f2f',
     },
   },
 });

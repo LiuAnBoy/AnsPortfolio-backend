@@ -1,5 +1,6 @@
-import * as React from 'react';
+import { useEffect } from 'react';
 import Head from 'next/head';
+import AOS from 'aos';
 import { AppProps } from 'next/app';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -7,6 +8,9 @@ import { CacheProvider, EmotionCache } from '@emotion/react';
 import theme from '../styles/theme';
 import createEmotionCache from '../applications/createEmotionCache';
 import { pageWithLayoutType } from '../domain/Layout/pageWithLayoutType';
+
+import 'aos/dist/aos.css';
+import '../styles/global.scss';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -25,6 +29,10 @@ export default function MyApp(props: MyAppProps) {
     (({ children }) => {
       return children;
     });
+
+  useEffect(() => {
+    AOS.init();
+  }, []);
 
   return (
     <CacheProvider value={emotionCache}>

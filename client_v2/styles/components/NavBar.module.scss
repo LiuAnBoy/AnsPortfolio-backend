@@ -1,31 +1,69 @@
 @import '../library';
 
 .appbar {
-  background-color: $background_nav;
+  background-color: #1c1c20;
 }
 
 .nav_icon {
   width: 40px;
+  cursor: pointer;
 }
 
 .nav_button {
-  color: $text_main_color;
-  padding: 6px 18px;
-  background-color: inherit;
-  font-size: 16px;
-  text-transform: uppercase;
-  margin: 12px 36px;
+  height: 35px;
+  margin: 0 16px;
+  position: relative;
+  width: 120px;
   cursor: pointer;
-  transition-duration: 0.5s;
-  &:hover {
-    color: $primary;
+}
+
+.shape {
+  fill: transparent;
+  stroke-dasharray: 140 540;
+  stroke-dashoffset: -294;
+  stroke-width: 0px;
+  stroke: $default;
+}
+
+.nav_button:hover .shape {
+  -webkit-animation: 0.5s draw linear forwards;
+  animation: 0.5s draw linear forwards;
+}
+
+.nav_button > div {
+  color: $default;
+  font-size: 18px;
+  position: relative;
+  top: -38px;
+  text-align: center;
+  width: 120px;
+}
+
+@keyframes draw {
+  0% {
+    stroke-dasharray: 140 540;
+    stroke-dashoffset: -294;
+    stroke-width: 4px;
+  }
+  100% {
+    stroke-dasharray: 760;
+    stroke-dashoffset: 0;
+    stroke-width: 2px;
   }
 }
 
-@media screen and (max-width: 768px) {
-  .nav_icon_box {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-  }
+.icon-group > a {
+  color: $default;
+}
+
+.icon-group > a:visited {
+  color: $default;
+}
+
+.icon-group > a:hover a:active {
+  color: $default;
+}
+
+.icon-group > a > img {
+  width: 22px;
 }

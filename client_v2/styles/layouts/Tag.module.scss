@@ -1,13 +1,19 @@
 @import '../library';
 
 .tag {
-  background-color: #dae2ec;
-  color: $text_main_color;
-  border-radius: 2px;
+  background-color: rgba(0, 0, 0, 0);
+  color: $primary;
+  border-radius: 1px;
   text-transform: uppercase;
   letter-spacing: 1px;
+  border: 1px solid '#1c1c20';
 }
 
 .tag > span {
   line-height: initial;
+}
+
+.tag:hover {
+  background-color: $default;
+  color: $primary;
 }

@@ -1,7 +1,12 @@
 @import '../library';
 
 .section {
-  @include section($background_dark);
+  // @include section(#fff);
+  @include section(#F6F5F4);
+}
+
+.button {
+  letter-spacing: 1px;
 }
 
 .button {
@@ -9,5 +14,6 @@
   left: 50%;
   transform: translateX(-50%);
   margin-top: 24px;
-  letter-spacing: 2px;
+
+  @include offset-btn(#1c1c20);
 }

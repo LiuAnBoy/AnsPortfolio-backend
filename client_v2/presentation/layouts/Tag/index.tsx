@@ -7,7 +7,13 @@ interface TagProps extends ChipProps {
 
 function Tag({ name, ...props }: TagProps) {
   return (
-    <Chip variant="filled" className={styles.tag} label={name} {...props} />
+    <Chip
+      variant="outlined"
+      color="primary"
+      className={styles.tag}
+      label={name}
+      {...props}
+    />
   );
 }
 export default Tag;

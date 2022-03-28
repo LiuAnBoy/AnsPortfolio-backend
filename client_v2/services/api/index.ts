@@ -1,19 +1,21 @@
 import axios from 'axios';
 
-export function getRequest(apiRoute: string, bodyParams?: string) {
+export const getRequest = async (apiRoute: string, bodyParams?: string) => {
   let params;
+
   if (!bodyParams) {
     params = null;
   } else {
     params = bodyParams;
   }
-  const config = {
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    params,
+
+  const headers = {
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
   };
 
-  return axios.get(apiRoute, config);
-}
+  return axios.get(apiRoute, {
+    headers,
+    params,
+  });
+};

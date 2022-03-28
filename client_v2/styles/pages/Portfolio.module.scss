@@ -1,12 +1,115 @@
 @import '../library';
 
 .layout {
-  padding: 120px 0 40px;
-  background-color: $background_light;
-  min-height: calc(100vh - 44px);
+  @include page;
 }
 
 .MuiImageListItemBar-root > .MuiImageListItemBar-titleWrap {
   position: absolute;
   bottom: 0;
+}
+
+.tag-btn {
+  height: 35px;
+  position: relative;
+  width: 100px;
+  cursor: pointer;
+}
+
+.shape {
+  fill: transparent;
+  stroke-dasharray: 140 540;
+  stroke-dashoffset: -294;
+  stroke-width: 0px;
+  stroke: $button_main_color;
+}
+
+.tag-btn:hover .shape {
+  -webkit-animation: 0.5s draw linear forwards;
+  animation: 0.5s draw linear forwards;
+}
+
+.tag-btn > div {
+  color: $button_main_color;
+  font-size: 18px;
+  position: relative;
+  top: -60px;
+  text-align: center;
+  width: 100px;
+  height: inherit;
+}
+
+@keyframes draw {
+  0% {
+    stroke-dasharray: 140 540;
+    stroke-dashoffset: -294;
+    stroke-width: 4px;
+  }
+  100% {
+    stroke-dasharray: 760;
+    stroke-dashoffset: 0;
+    stroke-width: 2px;
+  }
+}
+
+.divider {
+  background-color: $background_dark;
+  margin-top: 24px;
+  margin-bottom: 36px;
+}
+
+.block {
+  transition: ease-in-out 0.3s;
+}
+
+.list-bg {
+  height: 100%;
+  opacity: 0;
+  transition: ease-in-out 0.3s;
+}
+
+.block:hover > img {
+  transition: ease-in-out 0.3s;
+}
+
+.block:hover > .list-bg {
+  opacity: 1;
+}
+
+.list-bg-title {
+  font-size: 1.6rem;
+}
+
+.icon-group {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.icon-btn {
+  background-color: rgba(63, 58, 64, 0.2);
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  &:hover {
+    background-color: rgba(144, 133, 146, 0.2);
+  }
+}
+
+.icon-btn > a {
+  width: 24px;
+  height: 24px;
+  color: #fff;
+  &:hover {
+    color: #fff;
+  }
+  &:focus &:active {
+    color: #fff;
+  }
 }

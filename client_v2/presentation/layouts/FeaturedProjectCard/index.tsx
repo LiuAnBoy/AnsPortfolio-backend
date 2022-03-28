@@ -1,43 +1,18 @@
-import {
-  CardContent,
-  Typography,
-  Collapse,
-  CardActions,
-  IconButton,
-  IconButtonProps,
-  Stack,
-} from '@mui/material';
-import styled from '@emotion/styled';
-import { ExpandMoreOutlined } from '@mui/icons-material';
+import { CardContent, Typography, CardActions, Stack } from '@mui/material';
+import LinkIcon from '@mui/icons-material/Link';
 
-import theme from '../../../styles/theme';
-import FeaturedProjectCardProps from '../../../domain/FeaturedProjectCard';
+import ProjectsProps from '../../../domain/Projects';
 import Tag from '../Tag';
 
 import styles from '../../../styles/layouts/FeaturedProjectCard.module.scss';
 
-function FeaturedProjectCard({
-  handleExpandClick,
-  isExpand,
-  index,
-  data,
-}: CardProps) {
-  const { image, name, number, description, tags } = data;
+function FeaturedProjectCard({ index, data }: CardProps) {
+  const { image, name, description, tags, company, url } = data;
 
-  const ExpandMore = styled((props: ExpandMoreProps) => {
-    /* eslint @typescript-eslint/no-unused-vars: ["off"] */
-    const { expand, ...other } = props;
-    return <IconButton {...other} />;
-  })(({ expand }) => ({
-    transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
-    padding: 0,
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
-    }),
-  }));
+  const img_empty = 'https://fakeimg.pl/500x400/?text=Empty';
 
   return (
-    <div className={styles.card}>
+    <div className={styles.card} data-aos="fade-up" data-aos-once="true">
       <div
         className={
           (index + 1) % 2 === 0
@@ -45,45 +20,56 @@ function FeaturedProjectCard({
             : styles.card_image_box
         }
       >
-        <img className={styles.card_image} alt={name} src={image} />
+        <img
+          className={styles.card_image}
+          alt={name}
+          src={image.length !== 0 ? image : img_empty}
+        />
       </div>
       <CardContent
         className={
           (index + 1) % 2 === 0 ? styles.card_info_even : styles.card_info
         }
       >
-        <Typography variant="h6" className={styles.card_info_no}>
-          {number}.
+        <Typography variant="h6" className={styles['info-title']}>
+          {`${company} - ${name}`}
+          {url ? (
+            <a
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.link}
+            >
+              <LinkIcon />
+            </a>
+          ) : null}
         </Typography>
-        <Typography variant="h6" className={styles.card_info_title}>
-          {name}
+
+        <hr className={styles.hr} />
+
+        <Typography variant="subtitle2" className={styles['info-description']}>
+          {description}
         </Typography>
-        <Collapse in={isExpand} collapsedSize={60}>
-          <Typography
-            variant="subtitle2"
-            style={{ letterSpacing: 1.5, fontWeight: 400 }}
-            className={isExpand ? '' : styles.card_info_content}
-          >
-            {description}
-          </Typography>
-        </Collapse>
+
         <CardActions
           sx={{
             display: 'flex',
             justifyContent: 'space-between',
             paddingLeft: 0,
             paddingRight: 0,
+            paddingBottom: 0,
             marginTop: 1,
           }}
         >
-          <Stack spacing={1} direction="row" className={styles.stack}>
+          <Stack
+            spacing={{ xs: 0.4, md: 1 }}
+            direction="row"
+            className={styles.stack}
+          >
             {tags.map((tag) => {
               return <Tag size="small" key={tag._id} name={tag.name} />;
             })}
           </Stack>
-          <ExpandMore expand={isExpand} onClick={handleExpandClick}>
-            <ExpandMoreOutlined />
-          </ExpandMore>
         </CardActions>
       </CardContent>
     </div>
@@ -94,11 +80,5 @@ export default FeaturedProjectCard;
 
 interface CardProps {
   index: number;
-  handleExpandClick: () => void;
-  isExpand: boolean;
-  data: FeaturedProjectCardProps;
-}
-
-interface ExpandMoreProps extends IconButtonProps {
-  expand: boolean;
+  data: ProjectsProps;
 }
