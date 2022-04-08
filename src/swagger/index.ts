@@ -9,7 +9,7 @@ const apiDoc = {
   },
   servers: [
     {
-      url: 'http://localhost:8000',
+      url: 'https://swagger-demo-ts.herokuapp.com',
       description: 'Local server',
     },
   ],
