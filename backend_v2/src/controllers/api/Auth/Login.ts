@@ -33,14 +33,18 @@ class Login {
       }
 
       if (!user) {
-        return res.json({
-          error: ['User not found!'],
+        return res.status(404).json({
+          success: false,
+          message: 'User not found',
+          results: null,
         });
       }
 
       if (!user.password) {
-        return res.json({
-          error: ['Please login using your social creds'],
+        return res.status(404).json({
+          success: false,
+          message: 'Please login using your social credentials',
+          results: null,
         });
       }
 
@@ -53,7 +57,9 @@ class Login {
 
         if (!isMatch) {
           return res.json({
-            error: ['Password does not match!'],
+            success: false,
+            message: 'Password does not match!',
+            results: null,
           });
         }
 
@@ -62,10 +68,6 @@ class Login {
           res.locals.app.appSecret,
           { expiresIn: res.locals.app.jwtExpiresIn * 60 }
         );
-
-        /* eslint no-param-reassign: "off" */
-        user.tokens = [];
-        user.password = '';
 
         return res.json({
           user,

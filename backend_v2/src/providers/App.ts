@@ -1,14 +1,16 @@
-import { Database } from './Database';
+import MongooseService from './Database';
 import Express from './Express';
 
 /* eslint class-methods-use-this: "off" */
 class App {
+  private MongooseService = new MongooseService();
+
   public loadServer(): void {
     Express.init();
   }
 
   public loadDatabase(): void {
-    Database.init();
+    this.MongooseService.init();
   }
 }
 

@@ -1,11 +1,14 @@
 import { Application } from 'express';
+import morgan from 'morgan';
 import cors from 'cors';
 import compression from 'compression';
 import bodyParser from 'body-parser';
 import session from 'express-session';
 import MongoStore from 'connect-mongo';
+import { serve, setup } from 'swagger-ui-express';
 
 import Locals from '../providers/Locals';
+import apiDoc from '../swagger/index';
 
 class Http {
   public static mount(_express: Application): Application {
@@ -13,6 +16,7 @@ class Http {
 
     // Enables the request body parser
     _express.use(bodyParser.json());
+    _express.use(bodyParser.urlencoded({ extended: false }));
 
     // Disable the x-powered-by header in response
     _express.disable('x-powered-by');
@@ -40,8 +44,13 @@ class Http {
     // Enables the CORS
     _express.use(cors());
 
+    // Enables the Morgan
+    _express.use(morgan('dev'));
+
     // Enables the "gzip" / "deflate" compression for response
     _express.use(compression());
+
+    _express.use('/swagger', serve, setup(apiDoc));
 
     return _express;
   }

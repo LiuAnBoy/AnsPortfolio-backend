@@ -62,6 +62,7 @@ module.exports = {
     'prefer-destructuring': ['off'],
     'consistent-return': 'off',
     'func-names': 'off',
+    'no-param-reassign': ['error', { props: false }],
   },
   settings: {
     'import/extensions': ['.js', '.jsx', '.ts', '.tsx'],

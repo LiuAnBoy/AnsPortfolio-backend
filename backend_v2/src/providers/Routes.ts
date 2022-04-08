@@ -1,6 +1,5 @@
 import { Application } from 'express';
 import router from '../routes/Api';
-import Locals from './Locals';
 
 /* eslint class-methods-use-this: "off" */
 class Routes {

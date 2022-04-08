@@ -1,11 +1,8 @@
 import express, { Application } from 'express';
-import morgan from 'morgan';
-import cors from 'cors';
 
 import Locals from './Locals';
 import Routes from './Routes';
 import Bootstrap from '../middlewares/index';
-import router from '../routes/Api';
 import ExceptionHandler from '../exception/Handler';
 
 class Express {
@@ -21,7 +18,7 @@ class Express {
     this.express = express();
 
     this.mountDotEnv();
-    this.mountMiddlewares();
+    this.mountMiddleware();
     this.mountRoutes();
   }
 
@@ -36,7 +33,7 @@ class Express {
   /**
    * Mounts all the defined middlewares
    */
-  private mountMiddlewares(): void {
+  private mountMiddleware(): void {
     this.express = Bootstrap.init(this.express);
   }
 
@@ -45,13 +42,6 @@ class Express {
    */
   public init(): any {
     const port: number = Locals.config().port;
-
-    this.express.use(morgan('dev'));
-    this.express.use(express.json());
-    this.express.use(express.urlencoded({ extended: false }));
-    this.express.use(cors());
-
-    // this.express.use('/api', router);
 
     // Registering Exception / Error Handlers
     this.express.use(ExceptionHandler.errorHandler);

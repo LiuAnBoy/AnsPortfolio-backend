@@ -8,7 +8,8 @@
     "forceConsistentCasingInFileNames": true,
     "outDir": "dist", // 將編譯過後的js檔放到dist資料夾中
     "sourceMap": true,
-    "typeRoots": ["./src/interfaces/*", "./node_modules/@types"]
+    "resolveJsonModule": true,
+    "typeRoots": ["./src/interfaces/@types", "./node_modules/@types"]
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules", "client"]
