@@ -37,7 +37,23 @@ const login = {
       content: {
         'application/json': {
           schema: {
-            $ref: '#/components/schemas/loginUserBody',
+            type: 'object',
+            properties: {
+              user: {
+                type: 'object',
+                properties: {
+                  email: {
+                    type: 'string',
+                  },
+                },
+              },
+              token: {
+                type: 'string',
+              },
+              token_expires_in: {
+                type: 'number',
+              },
+            },
           },
           encoding: {
             contentType: 'application/json',
