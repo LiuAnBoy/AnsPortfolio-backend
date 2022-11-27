@@ -63,6 +63,7 @@ UserSchema.methods.comparePassword = function (
   });
 };
 
+// Generate Auth token
 UserSchema.methods.genAuthToken = async function (secret: string) {
   const token = jsonwebtoken.sign({ _id: this._id.toString() }, secret);
 
