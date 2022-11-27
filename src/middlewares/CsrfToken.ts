@@ -2,6 +2,7 @@ import { Application } from 'express';
 
 import Locals from '../providers/Locals';
 
+/* eslint no-console: off */
 class CsrfToken {
   public static mount(_express: Application): Application {
     console.log("Booting the 'CsrfToken' middleware...");
