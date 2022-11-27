@@ -1,21 +1,22 @@
 import bcrypt from 'bcrypt';
-import { model, Schema, Model, Document } from 'mongoose';
-import MongooseService from '../providers/Database';
+import { model, Schema, Document } from 'mongoose';
+import jsonwebtoken from 'jsonwebtoken';
 
 import { IUser } from '../interfaces/models/User';
 
 export interface IUserModel extends IUser, Document {
-  comparePassword(password: string, cb: any): string;
-  validPassword(password: string, cb: any): string;
+  comparePassword(
+    password: string,
+    cb: (err: Error | undefined, isMatch: boolean) => void
+  ): string;
+  genAuthToken(secret: string): string;
 }
 
 export const UserSchema = new Schema<IUserModel>(
   {
     email: { type: String, unique: true, required: true },
     password: { type: String, required: true },
-
-    tokens: Array,
-
+    tokens: [{ token: { type: String, required: true } }],
     createdAt: { type: Date, default: Date.now },
   },
   {
@@ -23,13 +24,14 @@ export const UserSchema = new Schema<IUserModel>(
       transform(doc, ret) {
         delete ret.password;
         delete ret.tokens;
+        delete ret.createdAt;
       },
     },
   }
 );
 
 // Password hash middleware
-UserSchema.pre('save', function (this: IUserModel, _next: any) {
+UserSchema.pre('save', function (this: IUserModel, _next) {
   if (!this.isModified('password')) {
     return _next();
   }
@@ -54,11 +56,21 @@ UserSchema.pre('save', function (this: IUserModel, _next: any) {
 // Compares the user's password with the request password
 UserSchema.methods.comparePassword = function (
   _requestPassword: string,
-  _cb: any
+  _cb: (_err: Error | undefined, _isMatch: boolean) => void
 ) {
   bcrypt.compare(_requestPassword, this.password, (_err, _isMatch) => {
     return _cb(_err, _isMatch);
   });
+};
+
+UserSchema.methods.genAuthToken = async function (secret: string) {
+  const token = jsonwebtoken.sign({ _id: this._id.toString() }, secret);
+
+  this.tokens = this.tokens.concat({ token });
+
+  await this.save();
+
+  return token;
 };
 
 const User = model<IUserModel>('user', UserSchema);

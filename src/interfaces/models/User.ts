@@ -1,7 +1,8 @@
+import { Types } from 'mongoose';
+
 export interface Tokens {
-  kind: string;
-  accessToken: string;
-  tokenSecret?: string;
+  token: string;
+  _id: Types.ObjectId;
 }
 
 export interface IUser {
@@ -10,7 +11,6 @@ export interface IUser {
 
   tokens: Tokens[];
 
-  avatar: string;
   createdAt: Date;
 }
 

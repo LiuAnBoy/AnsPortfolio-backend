@@ -10,13 +10,13 @@ class Locals {
    */
   public static config(): LocalProps {
     dotenv.config({
-      path: path.join(__dirname, `../../.env.${process.env.NODE_ENV}`),
+      path: path.join(__dirname, `../../.env`),
     });
 
-    const url = process.env.APP_URL || `http://localhost:${process.env.PORT}`;
-    const port = Number(process.env.PORT) || 8000;
+    const port = Number(process.env.PORT) || 8080;
+    const url = process.env.APP_URL || `http://localhost:${port}`;
     const appSecret = process.env.APP_SECRET || 'This is secret key';
-    const mongooseUrl = process.env.MONGOOSE_URI || '';
+    const mongooseUrl = process.env.MONGO_URI || '';
 
     const jwtExpiresIn = Number(process.env.JWT_EXPIRES_IN) || 3;
 
