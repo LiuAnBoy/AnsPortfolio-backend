@@ -15,7 +15,7 @@ projectRouter.put('/project/:number', auth, Project.updateProjectByNumber);
 projectRouter.patch(
   '/project/featured/:number',
   auth,
-  Project.updateFeaturedByNumber
+  Project.updateProjectByNumber
 );
 
 projectRouter.delete('/project/:number', auth, Project.deleteProjectByNumber);
