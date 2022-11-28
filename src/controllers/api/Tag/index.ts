@@ -4,7 +4,7 @@ import Tag from '../../../models/Tag';
 class TagApi {
   public static async getAllTags(req: Request, res: Response) {
     try {
-      const tags = await Tag.find();
+      const tags = await Tag.find({}, { __v: 0 });
 
       return res.status(200).send({ success: true, data: tags });
     } catch (error) {
