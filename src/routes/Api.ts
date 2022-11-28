@@ -5,7 +5,7 @@ import projectRouter from './Project';
 
 const router = Router();
 
-router.use('/auth', authRouter);
+router.use(authRouter);
 router.use(projectRouter);
 
 export default router;
