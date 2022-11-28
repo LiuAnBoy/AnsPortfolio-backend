@@ -5,8 +5,8 @@ import auth from '../middlewares/Authorization';
 
 const projectRouter = Router();
 
-projectRouter.get('/projects', auth, Project.getAllProjects);
-projectRouter.get('/project/:number', auth, Project.getProjectsByNumber);
+projectRouter.get('/projects', Project.getAllProjects);
+projectRouter.get('/project/:number', Project.getProjectsByNumber);
 
 projectRouter.post('/project', auth, Project.createProject);
 

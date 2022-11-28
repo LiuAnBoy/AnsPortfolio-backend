@@ -36,19 +36,30 @@ class ProjectApi {
           $sort: { number: -1 },
         },
         {
-          $project: { 'tags.createdAt': 0, 'tags.projects': 0, 'tags.__v': 0 },
+          $project: { 'tags.createdAt': 0, 'tags.__v': 0 },
         },
         {
           $addFields: { updatedAt: { $last: '$updatedAt' } },
         },
       ];
-      const tagStr = req.query.tags as string | undefined;
-      if (tagStr) {
-        const tags = tagStr.split(',');
-        aggs.push({
-          $match: { 'tags.name': { $all: tags } },
+
+      // Add Query filter
+      const { tags, featured } = req.query;
+
+      const matchAgg = { $match: {} };
+
+      if (typeof tags === 'string') {
+        Object.assign(matchAgg.$match, {
+          'tags.name': { $all: tags.split(',') },
         });
       }
+
+      if (featured !== undefined) {
+        Object.assign(matchAgg.$match, { featured: Boolean(featured) });
+      }
+
+      aggs.push(matchAgg);
+
       const data = await Project.aggregate(aggs);
       return res.status(200).send({ success: true, data });
     } catch (error) {
@@ -60,7 +71,7 @@ class ProjectApi {
     try {
       const { number } = req.params;
 
-      const project = await Project.findOne({ number });
+      const project = await Project.findOne({ number }, { __v: 0 });
 
       if (!project) {
         return res
