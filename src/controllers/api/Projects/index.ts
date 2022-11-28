@@ -36,19 +36,30 @@ class ProjectApi {
           $sort: { number: -1 },
         },
         {
-          $project: { 'tags.createdAt': 0, 'tags.projects': 0, 'tags.__v': 0 },
+          $project: { 'tags.createdAt': 0, 'tags.__v': 0 },
         },
         {
           $addFields: { updatedAt: { $last: '$updatedAt' } },
         },
       ];
-      const tagStr = req.query.tags as string | undefined;
-      if (tagStr) {
-        const tags = tagStr.split(',');
-        aggs.push({
-          $match: { 'tags.name': { $all: tags } },
+
+      // Add Query filter
+      const { tags, featured } = req.query;
+
+      const matchAgg = { $match: {} };
+
+      if (typeof tags === 'string') {
+        Object.assign(matchAgg.$match, {
+          'tags.name': { $all: tags.split(',') },
         });
       }
+
+      if (featured !== undefined) {
+        Object.assign(matchAgg.$match, { featured: Boolean(featured) });
+      }
+
+      aggs.push(matchAgg);
+
       const data = await Project.aggregate(aggs);
       return res.status(200).send({ success: true, data });
     } catch (error) {
@@ -60,7 +71,7 @@ class ProjectApi {
     try {
       const { number } = req.params;
 
-      const project = await Project.findOne({ number });
+      const project = await Project.findOne({ number }, { __v: 0 });
 
       if (!project) {
         return res
@@ -114,35 +125,6 @@ class ProjectApi {
       data.updatedAt = updatedAt;
 
       await project.update(data);
-
-      return res.status(200).send({
-        success: true,
-        message: 'Update project success.',
-      });
-    } catch (error) {
-      console.log(error);
-      return res.status(500).send({ message: 'Internal Server Error', error });
-    }
-  }
-
-  public static async updateFeaturedByNumber(req: Request, res: Response) {
-    try {
-      const { number } = req.params;
-      const data = req.body;
-      const project = await Project.findOne({ number });
-
-      if (!project) {
-        return res
-          .status(404)
-          .send({ success: false, message: 'Can not find project.' });
-      }
-
-      const updatedAt = project.updatedAt;
-      if (updatedAt.length >= 5) updatedAt.shift();
-      updatedAt.push(new Date());
-      data.updatedAt = updatedAt;
-
-      await project.update({ featured: data.featured });
 
       return res.status(200).send({
         success: true,

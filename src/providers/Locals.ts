@@ -10,7 +10,7 @@ class Locals {
    */
   public static config(): LocalProps {
     dotenv.config({
-      path: path.join(__dirname, `../../.env`),
+      path: path.join(__dirname, `../../.env.${process.env.NODE_ENV}`),
     });
 
     const port = Number(process.env.PORT) || 8080;
