@@ -7,9 +7,9 @@ import auth from '../middlewares/Authorization';
 
 const authRouter = Router();
 
-authRouter.post('/register', RegisterController.perform);
-authRouter.post('/login', LoginController.perform);
-authRouter.post('/logout', auth, LogoutContainer.single);
-authRouter.post('/logoutAll', auth, LogoutContainer.all);
+authRouter.post('/auth/register', RegisterController.perform);
+authRouter.post('/auth/login', LoginController.perform);
+authRouter.post('/auth/logout', auth, LogoutContainer.single);
+authRouter.post('/auth/logoutAll', auth, LogoutContainer.all);
 
 export default authRouter;

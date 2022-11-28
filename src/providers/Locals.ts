@@ -13,7 +13,7 @@ class Locals {
       path: path.join(__dirname, `../../.env.${process.env.NODE_ENV}`),
     });
 
-    const port = Number(process.env.PORT) || 8080;
+    const port = Number(process.env.PORT) || 8000;
     const url = process.env.APP_URL || `http://localhost:${port}`;
     const appSecret = process.env.APP_SECRET || 'This is secret key';
     const mongooseUrl = process.env.MONGO_URI || '';
