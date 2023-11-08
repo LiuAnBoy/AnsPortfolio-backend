@@ -9,9 +9,7 @@ class Locals {
    * throughout the app's runtime
    */
   public static config(): LocalProps {
-    dotenv.config({
-      path: path.join(__dirname, `../../.env.${process.env.NODE_ENV}`),
-    });
+    dotenv.config({ path: '.env' });
 
     const port = Number(process.env.PORT) || 8000;
     const url = process.env.APP_URL || `http://localhost:${port}`;
