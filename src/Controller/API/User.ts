@@ -11,7 +11,12 @@ class UserController {
 
       return res.status(200).send({ success: true, message: '註冊成功。' });
     } catch (error) {
-      return UserController.handleRegistrationError(res, error);
+      if (error instanceof Error) {
+        return UserController.handleRegistrationError(res, error);
+      }
+      return res
+        .status(500)
+        .send({ success: false, message: 'Internal Server Error' });
     }
   }
 
@@ -93,7 +98,10 @@ class UserController {
     });
   }
 
-  private static handleRegistrationError(res: Response, error: any): Response {
+  private static handleRegistrationError(
+    res: Response,
+    error: Error,
+  ): Response {
     const mongoError = error as MongoError;
     if (mongoError.code === 11000) {
       return res

@@ -18,15 +18,14 @@ const imageDict: { [key: string]: string } = {
 class FileController {
   public static async getImageList(req: Request, res: Response) {
     try {
-      const { folder, page, size } = req.query;
+      // #TODO: Implement page and size
+
+      const { folder } = req.query;
 
       const { _id } = req.body.user;
 
-      const filter: any = { user: _id };
+      const filter: { [key: string]: any } = { user: _id };
       let field: any = { __v: 0, user: 0, folder: 0 };
-
-      // const limit = parseInt(size as string) || 20;
-      // const skip = (parseInt(page as string) - 1) * limit || 0;
 
       if (folder) filter.folder = folder;
       if (folder === 'avatar') field = { ...field, of: 0 };
@@ -34,8 +33,6 @@ class FileController {
       const result = await Image.find(filter, field).sort({
         createdAt: -1,
       });
-      // .skip(skip)
-      // .limit(limit);
 
       return res.status(200).send({
         success: true,
@@ -66,7 +63,8 @@ class FileController {
 
       const { folder } = req.query;
       if (!folder)
-        return res.status(400).send({ message: 'folder is required' });
+        return res.status(403).send({ message: 'folder is required' });
+
       const folderName =
         process.env.NODE_ENV === 'development'
           ? 'test'
@@ -85,6 +83,7 @@ class FileController {
         createdAt: result.created_at,
         user: user._id,
         folder,
+        format: result.format,
       };
 
       const resImage = await Image.create(imageData);
@@ -128,19 +127,23 @@ class FileController {
         createdAt: result.created_at,
         user: user._id,
         folder: 'avatar',
-      })
+        format: result.format,
+      });
+
+      const transformedData = data.toObject({
+        versionKey: false,
+        transform: (doc, ret) => {
+          const transformedRet = { ...ret };
+          delete transformedRet._id;
+          delete transformedRet.of;
+          return transformedRet;
+        },
+      });
 
       return res.status(200).send({
         success: true,
         message: '圖片上傳成功',
-        data: data.toObject({
-          versionKey: false,
-          transform: (doc, ret) => {
-            delete ret._id;
-            delete ret.of;
-            return ret;
-          },
-        }),
+        data: transformedData,
       });
     } catch (error) {
       return res.status(500).send({ message: 'Internal Server Error', error });

@@ -10,6 +10,7 @@ export const ImageSchema = new Schema<ImageModal>({
   user: { type: Schema.Types.ObjectId, ref: 'user' },
   folder: { type: String },
   of: [{ type: Schema.Types.ObjectId, ref: 'project' }],
+  format: { type: String },
 });
 
 const Image = model<ImageModal>('image', ImageSchema);
@@ -24,4 +25,5 @@ export interface ImageProps {
   folder: string;
   of: Types.ObjectId[] | Types.ObjectId;
   updatedAt: Date;
+  format: string;
 }
