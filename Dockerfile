@@ -13,9 +13,6 @@ COPY .env ./
 # copy source code to /app/src folder
 COPY src /app/src
 
-# check files list
-RUN ls -a
-
 RUN npm install
 RUN npm run build
 
