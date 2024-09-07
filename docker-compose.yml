@@ -1,5 +1,6 @@
 services:
   app:
+    container_name: portfolio-backend
     build:
       context: .
       dockerfile: Dockerfile
